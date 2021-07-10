@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Sign Up</h1>
 
@@ -8,26 +7,22 @@
     <fieldset>
         <legend>Enter your credentials</legend>
 
-        {{ form.username.label }}
-        {{ form.username }}
+        {{ form.username.label }} {{ form.username }}
         <ul>
-        {% for error in form.username.errors %}
+            {% for error in form.username.errors %}
             <li class="error">{{ error }}</li>
-        {% endfor %}
+            {% endfor %}
         </ul>
 
-        {{ form.password.label }}
-        {{ form.password }}
+        {{ form.password.label }} {{ form.password }}
         <ul>
-        {% for error in form.password.errors %}
+            {% for error in form.password.errors %}
             <li class="error">{{ error }}</li>
-        {% endfor %}
+            {% endfor %}
         </ul>
 
         {{ form.submit }}
     </fieldset>
 </form>
-
-
 
 {% endblock %}

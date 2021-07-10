@@ -7,10 +7,9 @@ from flask import (
     session,
     flash
 )
-from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from pymongo import MongoClient
 import requests
+from air3d_app.models import User
 from air3d_app import app, db
 
 main = Blueprint('main', __name__)
