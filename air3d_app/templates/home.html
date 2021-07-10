@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- HERO -->
+<div class="jumbotron text-center hero-background-img">
+  <h1>Air3D</h1>
+  <p class="lead">The next stage of the consumer 3D printing revolution</p>
+  <a href="#learn-more" class="btn btn-primary">Learn More</a>
+</div>
+
+<!-- BENEFITS -->
+<section id="learn-more">
+  <div class="container pb-5 pt-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <h3>Simple</h3>
+        <p class="lead">
+          No need to create the CAD file! Just send a description of your
+          desired project to the 3D printer owner you connect with.
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <h3>Convenient</h3>
+        <p class="lead">
+          Using 3D printers is very complicated and requires lots of time and
+          hard work to master. You can avoid this by leveraging the expertise of
+          existing 3D printer owners.
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <h3>Affordable</h3>
+        <p class="lead">
+          Pay for each project instead of spending up to thousands of dollars on
+          installing and maintaining a desktop 3D printer.
+        </p>
+      </div>
+
+      <!-- Image of a 3D printer -->
+      <div class="row m-5">
+        <div class="col-lg-6">
+          <img
+            src="../static/assets/benefits-img.jpg"
+            class="img-fluid rounded"
+          />
+        </div>
+        <div class="col-lg-6">
+          <h3>Benefits to Owners</h3>
+          <p>
+            Owners of 3D printers can earn side income by fulfilling order
+            requests. More experienced owners can charge higher fees for orders
+            that require greater skill or more material to build. Of course,
+            less experienced owners of 3D printers can still earn money by
+            taking on simpler projects, which can help with developing 3D
+            printing expertise.
+          </p>
+          <p>
+            To get started, either peruse pending requests
+            <a
+              href="./product-requests.html"
+              data-toggle="tooltip"
+              title="Product Request Form"
+              >here</a
+            >
+            or submit your own CAD design file and specs to potential clients
+            <a
+              href="./design-upload-form.html"
+              data-toggle="tooltip"
+              title="Design Upload Form"
+            >
+              here</a
+            >.
+          </p>
+        </div>
+      </div>
+
+      <!-- Video embed -->
+      <div class="embed-responsive embed-responsive-16by9 m-5">
+        <iframe
+          class="embed-responsive-item"
+          src="https://www.youtube.com/embed/3LBTkLsjHGQ"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<div class="jumbotron text-center mb-0">
+  <p class="lead mb-4">Sign Up for More Infomation</p>
+  <div class="d-flex justify-content-center">
+    <form action="#" class="form-inline">
+      <input
+        type="text"
+        class="form-control mb-2 mr-sm-2"
+        placeholder="Email"
+      />
+      <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
