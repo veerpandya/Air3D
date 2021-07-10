@@ -6,33 +6,30 @@ from air3d_app.models import User, Requests
 
 class ProfileForm(FlaskForm):
     """Form to create a public profile."""
-    full_name = StringField('Full Name',
+    username = StringField('User Name',
         validators=[DataRequired(), Length(min=3, max=80)])
-    law_firm = StringField('Law Firm')
-    state_bar_num = IntegerField('State Bar Number', validators=[DataRequired()])
-    practice_areas = StringField('Practice Areas')
-    years_exp = IntegerField('Years of Experience')
+    creation_date = DateField('Date Joined')
     submit = SubmitField('Submit')
 
 
 class RequestForm(FlaskForm):
     """Form to create a request for a case review."""
-    full_name = StringField('Full Name',
+    username = StringField('User Name',
         validators=[DataRequired()])
-    city = StringField('City of Residence')
     email = StringField('Email Address',
         validators=[DataRequired(), Length(min=6)])
-    description = TextAreaField('Description of Case or Issue (include location and date, if applicable)',
+    description = TextAreaField('Detailed Description of Product Request (include size specifications)',
         validators=[DataRequired(), Length(min=10)])
+    submission_date = DateField('Date Submitted')
     submit = SubmitField('Submit')
 
 class DesignForm(FlaskForm):
     """Form to upload a design from an owner."""
-    full_name = StringField('Full Name',
+    userame = StringField('User Name',
         validators=[DataRequired()])
-    city = StringField('City of Residence')
     email = StringField('Email Address',
         validators=[DataRequired(), Length(min=6)])
-    description = TextAreaField('Description of Case or Issue (include location and date, if applicable)',
+    description = TextAreaField('Description of Product',
         validators=[DataRequired(), Length(min=10)])
+    submission_date = DateField('Date Submitted')
     submit = SubmitField('Submit')
