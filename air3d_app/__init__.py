@@ -1,16 +1,15 @@
-from dotenv import load_dotenv
 import os
 from flask import Flask
 from flask_bcrypt import Bcrypt
-from flask_pymongo import PyMongo
+from flask_sqlalchemy import SQLAlchemy
+from air3d_app.config import Config
 
-load_dotenv()
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = os.getenv('MONGO_URI')
-app.secret_key = os.getenv('SECRET_KEY')
+app.config.from_object(Config)
+app.secret_key = os.urandom(24)
 
-mongo = PyMongo(app)
+db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
 
