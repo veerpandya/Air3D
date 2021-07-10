@@ -17,3 +17,24 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f'<User: {self.username}>'
+
+class Profile(db.Model):
+    """Owner profile model."""
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False, unique=True)
+    # One-to-one relationship: each user has exactly one profile
+    user = db.relationship('User', back_populates='profile', uselist=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+class Requests(db.Model):
+    """Requests model."""
+    id = db.Column(db.Integer, primary_key=True)
+    full_name = db.Column(db.String(80), nullable=False)
+    city = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(2000), nullable=False)
+
+class Design(db.Model):
+    """Design upload model."""
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(2000), nullable=False)
