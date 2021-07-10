@@ -9,8 +9,12 @@ from flask import (
 )
 from bson.objectid import ObjectId
 import requests
-from air3d_app.models import User
 from air3d_app import app, db
+from flask_login import login_user, logout_user, login_required, current_user
+from datetime import date, datetime
+from air3d_app.models import User, Profile, Requests, Design
+from air3d_app.main.forms import ProfileForm, RequestForm, DesignForm
+from air3d_app import bcrypt
 
 main = Blueprint('main', __name__)
 
