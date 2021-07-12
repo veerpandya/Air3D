@@ -67,7 +67,7 @@ def product_requests():
     """View list of all submitted product requests."""
     all_requests = Requests.query.all()
     return render_template('product-requests.html',
-        all_requests=all_requests)
+                           all_requests=all_requests)
 
 
 @main.route('/create_profile', methods=['GET', 'POST'])
@@ -76,7 +76,7 @@ def create_profile():
     """Create a public profile."""
     form = ProfileForm()
     # if form was submitted and contained no errors
-    if form.validate_on_submit(): 
+    if form.validate_on_submit():
         new_profile = Profile(
             username=form.username.data
         )
