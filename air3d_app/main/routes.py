@@ -41,13 +41,6 @@ def product_offers():
     return render_template('product-offers.html')
 
 
-# Product Offers
-@main.route('/design-upload-form')
-def design_upload_form():
-    '''Display design upload form'''
-    return render_template('design-upload-form.html')
-
-
 @main.route('/order-form', methods=['GET', 'POST'])
 def create_request():
     """Create a request for a product."""
@@ -63,7 +56,7 @@ def create_request():
 
         flash('New request submitted successfully.')
         return redirect(url_for('main.homepage'))
-    
+
     # if form was not valid, or was not submitted yet
     return render_template('order-form.html', form=form)
 
@@ -74,7 +67,7 @@ def product_requests():
     """View list of all submitted product requests."""
     all_requests = Requests.query.all()
     return render_template('product-requests.html',
-        all_requests=all_requests)
+                           all_requests=all_requests)
 
 
 @main.route('/create_profile', methods=['GET', 'POST'])
@@ -83,7 +76,7 @@ def create_profile():
     """Create a public profile."""
     form = ProfileForm()
     # if form was submitted and contained no errors
-    if form.validate_on_submit(): 
+    if form.validate_on_submit():
         new_profile = Profile(
             username=form.username.data
         )
@@ -121,6 +114,8 @@ def profile(full_name):
     # user = User.query.filter_by(username=username).one()
     profile = Profile.query.filter_by(username=username).first()
     return render_template('profile.html', profile=profile)
+
+
 # Product Offers Upload Form
 @main.route('/design-upload-form')
 def design_upload_form():
