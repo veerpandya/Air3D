@@ -38,7 +38,7 @@
                 >
                 <a
                     class="nav-item nav-link"
-                    href="{{ url_for('main.order_form') }}"
+                    href="{{ url_for('main.create_request') }}"
                     >Order Form</a
                 >
                 <a
@@ -71,9 +71,10 @@
         </nav>
 
         {% if current_user.is_authenticated %}
-        <p>You are logged in as {{ current_user.username }}</p>
-        {% endif %} {% for message in get_flashed_messages() %}
-        <p>{{ message }}</p>
+          <p>You are logged in as {{ current_user.username }}</p>
+        {% endif %} 
+        {% for message in get_flashed_messages() %}
+          <p>{{ message }}</p>
         {% endfor %} {% block content %}{% endblock %}
 
         <!-- FOOTER -->
