@@ -4,7 +4,13 @@
 <h2 class="bg-light text-center pt-3 pb-5 mb-0">
     Place an order here for your desired product.
 </h2>
-<form class="bg-light mb-0">
+<form
+    method="POST"
+    enctype="multipart/form-data"
+    action="{{ url_for('main.order_form')
+}}"
+    class="bg-light mb-0"
+>
     <div class="form-group row">
         <label for="inputEmail" class="col-sm-2 offset-sm-1 col-form-label mt-5"
             >Email</label
@@ -33,6 +39,7 @@
             type="file"
             class="form-control-file offset-sm-1 mb-5"
             id="cadFile"
+            name="request"
         />
     </div>
     <div class="form-group row">
@@ -53,10 +60,8 @@
         </div>
         <div class="col-sm-2">
             <button
-                type="button"
+                type="submit"
                 class="btn btn-primary mb-3"
-                data-toggle="modal"
-                data-target="#submitModal"
             >
                 Submit Order
             </button>

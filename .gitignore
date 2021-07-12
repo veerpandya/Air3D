@@ -150,4 +150,7 @@ dmypy.json
 # vscode
 .vscode/
 
+#file uploads
+uploads/
+
 # End of https://www.toptal.com/developers/gitignore/api/flask

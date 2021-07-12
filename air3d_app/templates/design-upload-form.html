@@ -4,7 +4,13 @@
 <h2 class="bg-light text-center pt-3 pb-5 mb-0">
     Upload your product design here.
 </h2>
-<form class="bg-light mb-0">
+<form
+    method="POST"
+    enctype="multipart/form-data"
+    action="{{ url_for('main.design_upload_form')
+}}"
+    class="bg-light mb-0"
+>
     <div class="form-group row">
         <label for="inputEmail" class="col-sm-2 offset-sm-1 col-form-label mt-5"
             >Email</label
@@ -27,21 +33,13 @@
     </div>
     <div class="form-group">
         <label class="offset-sm-1" for="imageFiles"
-            >Choose an image for your product (or compress multiple images into
-            a ZIP file):</label
+            >Choose an image for your product:</label
         >
         <input
             type="file"
             class="form-control-file offset-sm-1 mb-5"
             id="imageFiles"
-        />
-    </div>
-    <div class="form-group">
-        <label for="cadFile" class="offset-sm-1">Upload CAD file:</label>
-        <input
-            type="file"
-            class="form-control-file offset-sm-1 mb-5"
-            id="cadFile"
+            name="offer"
         />
     </div>
     <div class="form-group row">
