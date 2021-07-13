@@ -11,6 +11,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(200), nullable=False)
     # # One-to-many relationship: each user can have many requests posts
     requests = db.relationship('Requests', back_populates='author')
+    profile = db.relationship('Profile', back_populates='user', uselist=False)
     
 
     def __repr__(self):
@@ -32,6 +33,7 @@ class Requests(db.Model):
     description = db.Column(db.String(2000), nullable=False)
     price = db.Column(db.Integer, nullable=True)
     submission_date = db.Column(db.Date)
+    user = db.relationship('User', back_populates='requests')
 
 class Design(db.Model):
     """Design upload model."""
