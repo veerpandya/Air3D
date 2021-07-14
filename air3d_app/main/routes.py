@@ -56,7 +56,7 @@ def create_request():
 
         flash('New request submitted successfully.')
         return redirect(url_for('main.home'))
-    
+
     # if form was not valid, or was not submitted yet
     return render_template('order-form.html', form=form)
 
