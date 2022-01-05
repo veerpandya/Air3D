@@ -1,9 +1,10 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
-# from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required, current_user
 import firebase_admin
 import pyrebase
 import json
 from firebase_admin import credentials
+from functools import wraps
 
 from air3d_app.models import User
 from air3d_app.auth.forms import SignUpForm, LoginForm
@@ -15,15 +16,29 @@ from air3d_app import app, db
 auth = Blueprint("auth", __name__)
 
 #Connect to firebase
-cred = credentials.Certificate('./firebaseAdminConfig.json')
+cred = credentials.Certificate('/Users/GobindPuniani/Library/Mobile Documents/com~apple~CloudDocs/Make School/Term 5/SPD 1.5/Air3D-final-project/air3d_app/auth/firebaseAdminConfig.json')
 firebase = firebase_admin.initialize_app(cred)
-pb = pyrebase.initialize_app(json.load(open('./firebase_config.json')))
+pb = pyrebase.initialize_app(json.load(open('/Users/GobindPuniani/Library/Mobile Documents/com~apple~CloudDocs/Make School/Term 5/SPD 1.5/Air3D-final-project/air3d_app/auth/firebase_config.json')))
 
 #Data source
 users = [{'uid': 1, 'name': 'Noah Schairer'}]
 
+def check_token(f):
+    @wraps(f)
+    def wrap(*args,**kwargs):
+        if not request.headers.get('authorization'):
+            return {'message': 'No token provided'},400
+        try:
+            user = firebase_admin.auth.verify_id_token(request.headers['authorization'])
+            request.user = user
+        except:
+            return {'message':'Invalid token provided.'},400
+        return f(*args, **kwargs)
+    return wrap
+
 #API route to get users
 @auth.route('/api/userinfo')
+@check_token
 def userinfo():
     return {'data': users}, 200
 
