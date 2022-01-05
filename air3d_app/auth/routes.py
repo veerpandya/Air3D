@@ -43,8 +43,9 @@ def userinfo():
     return {'data': users}, 200
 
 #API route to sign up a new user
-@auth.route('/api/signup')
+@auth.route('/signup')
 def signup():
+    form = SignUpForm()
     email = request.form.get('email')
     password = request.form.get('password')
     if email is None or password is None:
