@@ -123,6 +123,9 @@ env.bak/
 venv.bak/
 pythonenv*
 
+# Firebase Admin SDK
+air3d_app/auth/firebaseAdminConfig.json
+
 # Spyder project settings
 .spyderproject
 .spyproject
