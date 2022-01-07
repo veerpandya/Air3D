@@ -5,12 +5,12 @@ from flask_login import UserMixin
 
 
 class User(UserMixin, db.Model):
-    """User model, for attorneys only)."""
+    """User model"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(200), nullable=False)
     # # One-to-many relationship: each user can have many requests posts
-    requests = db.relationship('Requests', back_populates='author')
+    requests = db.relationship('Requests', back_populates='user')
     profile = db.relationship('Profile', back_populates='user', uselist=False)
     
 
@@ -33,6 +33,7 @@ class Requests(db.Model):
     description = db.Column(db.String(2000), nullable=False)
     price = db.Column(db.Integer, nullable=True)
     submission_date = db.Column(db.Date)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', back_populates='requests')
 
 class Design(db.Model):

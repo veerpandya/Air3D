@@ -84,7 +84,7 @@ def create_profile():
         db.session.commit()
 
         flash('New profile was created successfully.')
-        return redirect(url_for('main.homepage'))
+        return redirect(url_for('main.home'))
 
     # if form was not valid, or was not submitted yet
     return render_template('create_profile.html', form=form)
