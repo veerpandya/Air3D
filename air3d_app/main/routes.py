@@ -12,7 +12,7 @@ from flask_uploads import UploadSet, IMAGES, configure_uploads
 from bson.objectid import ObjectId
 import requests
 import os
-from air3d_app import app, db
+from air3d_app import app, db, socketio
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import date, datetime
 from air3d_app.models import User, Profile, Requests, Design
@@ -126,3 +126,19 @@ def design_upload_form():
         flash("Offer submitted")
         return render_template('design-upload-form.html')
     return render_template('design-upload-form.html')
+
+
+# Chat Page
+@main.route('/chat', methods=['GET', 'POST'])
+def chat():
+    return render_template('chat.html')
+
+
+def receive_message(methods=['GET', 'POST']):
+    print("New Message")
+
+
+@socketio.on('message')
+def message(json):
+    print(str(json))
+    socketio.emit('response', json, callback=receive_message)

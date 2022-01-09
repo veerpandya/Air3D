@@ -50,17 +50,13 @@
                 {% if current_user.is_authenticated %}
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="btn btn-secondary" href="/logout"
-                            >Log Out</a
-                        >
+                        <a class="btn btn-secondary" href="/logout">Log Out</a>
                     </li>
                 </ul>
                 {% else %}
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="btn btn-secondary" href="/login"
-                            >Sign in</a
-                        >
+                        <a class="btn btn-secondary" href="/login">Sign in</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-primary" href="/signup">Sign up</a>
@@ -71,10 +67,9 @@
         </nav>
 
         {% if current_user.is_authenticated %}
-          <p>You are logged in as {{ current_user.username }}</p>
-        {% endif %} 
-        {% for message in get_flashed_messages() %}
-          <p>{{ message }}</p>
+        <p>You are logged in as {{ current_user.username }}</p>
+        {% endif %} {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
         {% endfor %} {% block content %}{% endblock %}
 
         <!-- FOOTER -->
@@ -92,6 +87,8 @@
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             crossorigin="anonymous"
         ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
         <script src="../static/index.js"></script>
     </body>
 </html>
