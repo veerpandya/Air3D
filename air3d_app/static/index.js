@@ -5,7 +5,7 @@ socket.on("connect", function () {
     socket.emit("message", {
         data: current_user + " Connected",
     });
-    var form = $("form").on("submit", function (e) {
+    document.getElementById("message_box").onsubmit = function (e) {
         e.preventDefault();
         let user_input = $("input.message").val();
         socket.emit("message", {
@@ -13,7 +13,7 @@ socket.on("connect", function () {
             message: user_input,
         });
         $("input.message").val("").focus();
-    });
+    };
 });
 socket.on("response", function (msg) {
     console.log(msg);
