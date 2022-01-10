@@ -113,7 +113,7 @@ def order_form():
 def profile(full_name):
     """View public profile of an attorny."""
     # user = User.query.filter_by(username=username).one()
-    profile = Profile.query.filter_by(username=username).first()
+    profile = Profile.query.filter_by(username=current_user.username).first()
     return render_template('profile.html', profile=profile)
 
 
