@@ -21,6 +21,7 @@ from air3d_app import bcrypt
 
 main = Blueprint('main', __name__)
 
+
 # Create Upload sets for offers and design requests
 offers = UploadSet("offers", IMAGES)
 design_requests = UploadSet("requests", IMAGES)
@@ -130,6 +131,7 @@ def design_upload_form():
 
 # Chat Page
 @main.route('/chat', methods=['GET', 'POST'])
+@login_required
 def chat():
     return render_template('chat.html')
 

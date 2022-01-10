@@ -4,9 +4,15 @@
 <div class="message_holder"></div>
 
 <form action="" method="POST">
-    <input type="text" class="username" placeholder="User Name" />
     <input type="text" class="message" placeholder="Messages" />
     <input type="submit" />
 </form>
 
-{% endblock %}
+{% endblock %} {% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
+<script type="text/javascript">
+    var current_user = "{{ current_user.username }}";
+</script>
+<script src="../static/index.js"></script>
+{% endblock scripts %}

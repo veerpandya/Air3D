@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
 from flask_login import LoginManager
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
@@ -13,6 +14,10 @@ app.secret_key = os.urandom(24)
 
 # Initialize SocketIO for chat
 socketio = SocketIO(app)
+socketio.init_app(app, cors_allowed_origins="*")
+
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Limits file upload size to 16mb
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
