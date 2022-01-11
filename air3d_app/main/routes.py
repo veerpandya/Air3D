@@ -12,12 +12,14 @@ from flask_uploads import UploadSet, IMAGES, configure_uploads
 from bson.objectid import ObjectId
 import requests
 import os
+from dotenv import load_dotenv
 from air3d_app import app, db, socketio
 from flask_login import login_user, logout_user, login_required, current_user
 from datetime import date, datetime
 from air3d_app.models import User, Profile, Requests, Design
 from air3d_app.main.forms import ProfileForm, RequestForm, DesignForm
 from air3d_app import bcrypt
+import stripe
 
 main = Blueprint('main', __name__)
 
@@ -26,6 +28,16 @@ main = Blueprint('main', __name__)
 offers = UploadSet("offers", IMAGES)
 design_requests = UploadSet("requests", IMAGES)
 configure_uploads(app, (offers, design_requests))
+
+# Set Stripe Variables
+load_dotenv()
+
+stripe_keys = {
+    "secret_key": os.getenv("STRIPE_SECRET_KEY"),
+    "publishable_key": os.getenv("STRIPE_PUBLISHABLE_KEY"),
+}
+
+stripe.api_key = stripe_keys["secret_key"]
 
 
 # Homepage
