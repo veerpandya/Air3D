@@ -5,7 +5,8 @@ from flask import (
     url_for,
     Blueprint,
     session,
-    flash
+    flash,
+    jsonify
 )
 from werkzeug.utils import secure_filename
 from flask_uploads import UploadSet, IMAGES, configure_uploads
@@ -156,3 +157,12 @@ def receive_message(methods=['GET', 'POST']):
 def message(json):
     print(str(json))
     socketio.emit('response', json, callback=receive_message)
+
+
+
+# Stripe routes
+
+@main.route("/config")
+def get_publishable_key():
+    stripe_config = {"publicKey": stripe_keys["publishable_key"]}
+    return jsonify(stripe_config)
