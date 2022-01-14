@@ -206,3 +206,13 @@ def create_checkout_session():
         return jsonify({"sessionId": checkout_session["id"]})
     except Exception as e:
         return jsonify(error=str(e)), 403
+
+
+@main.route("/success")
+def success():
+    return render_template("success.html")
+
+
+@main.route("/cancelled")
+def cancelled():
+    return render_template("cancelled.html")
