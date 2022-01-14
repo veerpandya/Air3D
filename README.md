@@ -1,5 +1,5 @@
 # Final Project: Air3D
-<i>Make School SPD 1.5</i>
+<i>Make School SPD 1.5 and Senior Winter Intensive</i>
 
 ### Overview
 
