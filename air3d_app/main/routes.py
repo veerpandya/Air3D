@@ -176,7 +176,7 @@ def get_publishable_key():
 
 @main.route("/create-checkout-session")
 def create_checkout_session():
-    domain_url = "http://127.0.0.1:5000/"
+    domain_url = "https://http://air3d.herokuapp.com/"
     stripe.api_key = stripe_keys["secret_key"]
 
     try:
