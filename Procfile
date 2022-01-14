@@ -1,1 +1,1 @@
-web: gunicorn app:app --preload
+gunicorn -w 1 --threads 100 module:app
