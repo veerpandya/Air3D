@@ -1,1 +1,1 @@
-web: uwsgi --http :5000 --gevent 1000 --http-websockets --master --wsgi-file app.py --callable app
+web: gunicorn --worker-class eventlet -w 1 app:app
