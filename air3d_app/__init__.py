@@ -14,7 +14,7 @@ app.secret_key = os.urandom(24)
 
 # Initialize SocketIO for chat
 socketio = SocketIO(app)
-socketio.init_app(app, cors_allowed_origins="*")
+#socketio.init_app(app, cors_allowed_origins="*")
 
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
