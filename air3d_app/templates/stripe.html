@@ -1,9 +1,15 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <section class="section">
+{% extends "base.html" %} {% block content %}
+<section class="section">
     <div class="container">
-      <button class="button is-primary" id="submitBtn">Purchase!</button>
+        <button class="button is-primary" id="submitBtn">Purchase!</button>
     </div>
-  </section>
-{% endblock %}
+</section>
+{% endblock %} {% block scripts %}
+<!-- Stripe JS -->
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+<script
+    defer
+    src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+></script>
+{% endblock scripts %}
