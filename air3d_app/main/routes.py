@@ -36,6 +36,7 @@ load_dotenv()
 stripe_keys = {
     "secret_key": os.getenv("STRIPE_SECRET_KEY"),
     "publishable_key": os.getenv("STRIPE_PUBLISHABLE_KEY"),
+    # "endpoint_secret": os.environ["STRIPE_ENDPOINT_SECRET"],
 }
 
 stripe.api_key = stripe_keys["secret_key"]
@@ -124,7 +125,7 @@ def order_form():
 
 @main.route('/profile/<full_name>')
 def profile(full_name):
-    """View public profile of an attorny."""
+    """View public profile of a user."""
     # user = User.query.filter_by(username=username).one()
     profile = Profile.query.filter_by(username=current_user.username).first()
     return render_template('profile.html', profile=profile)
@@ -216,3 +217,28 @@ def success():
 @main.route("/cancelled")
 def cancelled():
     return render_template("cancelled.html")
+
+
+@main.route("/webhook", methods=["POST"])
+def stripe_webhook():
+    payload = request.get_data(as_text=True)
+    sig_header = request.headers.get("Stripe-Signature")
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, stripe_keys["endpoint_secret"]
+        )
+
+    except ValueError as e:
+        # Invalid payload
+        return "Invalid payload", 400
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return "Invalid signature", 400
+
+    # Handle the checkout.session.completed event
+    if event["type"] == "checkout.session.completed":
+        print("Payment was successful.")
+        # TODO: run some custom code here
+
+    return "Success", 200
